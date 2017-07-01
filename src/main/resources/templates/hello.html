@@ -3,11 +3,25 @@
 >
 <head>
     <title>Hello World!</title>
+    <script src="https://apis.google.com/js/platform.js"></script>
+    <meta name="google-signin-client_id"
+          content="372469029482-hpmid1gr1mkhmloh884g5ih0ks147mop.apps.googleusercontent.com"/>
+
+    <script>
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+            });
+        }
+    </script>
 </head>
 <body>
 <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+
 <form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
+    <input type="submit" onclick="signOut();" value="Sign Out"/>
 </form>
+
 </body>
 </html>
